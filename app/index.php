@@ -21,15 +21,26 @@
 
 	<?php
 		$books = [
-			'Walden; or, Life in the Woods',
-			'The Meditations of Marcus Aurelius',
-			'Classical Music and Postmodern Knowledge'
+			[
+				'name' => 'Walden; or, Life in the Woods',
+				'author' => 'Thoreau',
+				'purchaseUrl' => 'http://example1.com'
+			],
+			[
+				'name' => 'Classical Music and Postmodern Knowledge',
+				'author' => 'Lawrence Kramer',
+				'purchaseUrl' => 'http://example2.com'
+			]			
 		];
 	?>
 
 	<ul>
 		<?php foreach ($books as $book) : ?>
-			<li><?= $book ?></li>
+			<li>
+				<a href="<?= $book['purchaseUrl'] ?>">
+					<?= $book['name'] ?>
+				</a>
+			</li>
 		<?php endforeach; ?>
 	</ul>
 </body>
