@@ -5,31 +5,32 @@
     <title>Demo</title>
 
 	<style>
-		body {
-			display: grid;
-			place-items: center;
-			height: 100vh;
+		html {
 			margin: 0;
+			padding: 0;
+		}
+		body {
+			margin: 20px;
+			padding: 0;
 			font-family: sans-serif;
 		}
 	</style>
 </head>
 <body>
+	<h1>Recommended Books</h1>
+
 	<?php
-		$name = "Walden; or, Life in the Woods";
-		$read = false;
-		$message = "";
-
-		if ($read) {
-			$message = "You have read $name";
-		} else {
-			$message = "You have NOT read $name";
-		}
+		$books = [
+			'Walden; or, Life in the Woods',
+			'The Meditations of Marcus Aurelius',
+			'Classical Music and Postmodern Knowledge'
+		];
 	?>
-    
-    <h1>
-		<?= $message ?>
-	</h1>
 
+	<ul>
+		<?php foreach ($books as $book) : ?>
+			<li><?= $book ?></li>
+		<?php endforeach; ?>
+	</ul>
 </body>
 </html>
