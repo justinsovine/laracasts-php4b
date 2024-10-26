@@ -52,22 +52,27 @@
 				'purchaseUrl' => 'http://example5.com'
 			],
 		];
+ 
+		// Replaced with array_filter()
+		// function filter($items, $fn) {
+		// 	$filteredItems = [];
 
-		function filterByAuthor($books, $author) {
-			$filteredBooks = [];
+		// 	foreach ($items as $item) {
+		// 		if ($fn($item)) {
+		// 			$filteredItems[] = $item;
+		// 		}
+		// 	}
 
-			foreach ($books as $book) {
-				if ($book['author'] === $author) {
-					$filteredBooks[] = $book;
-				}
-			}
-
-			return $filteredBooks;
-		}
+		// 	return $filteredItems;
+		// }
+		
+		$filteredBooks = array_filter($books, function($book) {
+			return $book['releaseYear'] >= 1854;
+		});
 	?>
 
 	<ul>
-		<?php foreach (filterByAuthor($books, 'Thoreau') as $book) : ?>
+		<?php foreach ($filteredBooks as $book) : ?>
 			<li>
 				<a href="<?= $book['purchaseUrl'] ?>">
 					<?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - by <?= $book['author']; ?>
