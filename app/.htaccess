@@ -1,0 +1,4 @@
+# Enable URL rewriting and redirect all non-existent file requests to index.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
