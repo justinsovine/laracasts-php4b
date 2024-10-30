@@ -1,0 +1,34 @@
+Primitive
+One of a set of fundamental language elements that serve as the foundation for a programming language
+
+Filter
+A filter is a program or section of code that's designed to examine each input or output request for certain qualifying criteria and then process or forward it accordingly.
+
+PHP built-in functions or standard library functions:
+
+array_filter — Filters elements of an array using a callback function
+
+array_filter(array $array, ?callable $callback = null, int $mode = 0): array
+
+Iterates over each value in the array passing them to the callback function. If the callback function returns true, the current value from array is returned into the result array.
+
+With an anonymous function:
+
+array_filter($array, function($item) {
+    return $item <= 1984; // Returns True or False
+});
+
+Or
+
+array_filter($array, function($item) {
+    return this_is_a_cool_function($item);
+});
+
+Or
+
+If using PHP 7.4 or later we can use a short arrow function as well
+
+array_filter($array, fn($item) => this_is_a_cool_function($item));
+
+
+
