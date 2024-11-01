@@ -1,6 +1,9 @@
 # syntax=docker/dockerfile:1.4
 
 FROM --platform=$BUILDPLATFORM php:8.0.9-apache as builder
+# Enable necessary PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql
+# Enable Apache Rewrite
 RUN a2enmod rewrite
 
 # Copy the custom Apache configuration file into the sites-available directory,
