@@ -2,21 +2,15 @@
 
 class Database 
 {
-    private $db_host;
-    private $db_name;
-    private $db_user;
-    private $db_password;
     public $connection;
 
-    public function __construct()
+    public function __construct($config, $username = 'root', $password = '')
     {
-        $this->db_host = getenv('DB_HOST');
-        $this->db_name = getenv('DB_NAME');
-        $this->db_user = getenv('DB_USER');
-        $this->db_password = getenv('DB_PASSWORD');
-        $dsn = "mysql:host=$this->db_host;dbname=$this->db_name;charset=utf8mb4";
+        $dsn = 'mysql:' . http_build_query($config, '', ';');
 
-        $this->connection = new PDO($dsn, $this->db_user, $this->db_password);
+        $this->connection = new PDO($dsn, $username, $password, [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
     }
 
     public function query($query)
