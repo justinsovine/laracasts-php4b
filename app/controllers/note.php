@@ -4,9 +4,22 @@ $config = require 'config.php';
 $db = new Database($config['database'], getenv('DB_USER'), getenv('DB_PASSWORD'));
 
 $heading = "Note";
+$currentUserId = 1;
 
 $id = $_GET['id'];
+$user_id = 1;
+
 $query = 'SELECT * FROM notes WHERE id = :id';
-$note = $db->query($query, ['id' => $id])->fetch();
+$note = $db->query($query, [
+    'id' => $id
+])->fetch();
+
+if (! $note) {
+    abort();
+}
+
+if ((int)$note['user_id'] !== $currentUserId) {
+    abort(Response::FORBIDDEN);
+}
 
 require "views/note.view.php";

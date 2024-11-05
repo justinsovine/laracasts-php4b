@@ -14,11 +14,11 @@ function routeToController($uri, $routes) {
     if (array_key_exists($uri, $routes)) {
         require($routes[$uri]);
     } else {
-        abort(404);
+        abort(Response::NOT_FOUND);
     }
 }
 
-function abort($code = 404) {
+function abort($code = Response::NOT_FOUND) {
     http_response_code($code);
     require "views/{$code}.php";
 }
