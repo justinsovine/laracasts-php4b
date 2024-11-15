@@ -1,9 +1,11 @@
 <?php
 
+use Core\App;
 use Core\Database;
 
-$config = require base_path('config.php');
-$db = new Database($config['database'], getenv('DB_USER'), getenv('DB_PASSWORD'));
+//$db = App::container()->resolve('Core\Database');
+//$db = App::container()->resolve(Database::class);
+$db = App::resolve(Database::class);
 
 $id = $_GET['id'];
 $currentUserId = 1;
