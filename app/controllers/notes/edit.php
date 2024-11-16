@@ -3,12 +3,10 @@
 use Core\App;
 use Core\Database;
 
-//$db = App::container()->resolve('Core\Database');
-//$db = App::container()->resolve(Database::class);
 $db = App::resolve(Database::class);
 
-$id = $_POST['id'];
 $currentUserId = 1;
+$id = $_GET['id'];
 
 $query = 'SELECT * FROM notes WHERE id = :id';
 $note = $db->query($query, [
@@ -17,10 +15,8 @@ $note = $db->query($query, [
 
 authorize((int)$note['user_id'] === $currentUserId);
 
-$query = 'DELETE FROM notes WHERE id = :id';
-$db->query($query, [
-    'id' => $_POST['id']
+view('notes/edit.view.php', [
+    'heading' => 'Edit Note',
+    'errors' => [],
+    'note' => $note
 ]);
-
-header('location: /notes');
-exit();

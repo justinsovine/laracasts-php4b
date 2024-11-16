@@ -9,12 +9,10 @@
         </p>
 
         <p class="mb-6"><?= htmlspecialchars($note['body']); ?></p>
-
-        <form action="" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="id" value="<?= $note['id']; ?>">
-            <button class="btn bg-red-600 text-white hover:bg-red-800 py-2 px-4 rounded">Delete Note</a>
-        </form>
+        
+        <footer>
+            <a href="/note/edit?id=<?= $_GET['id']; ?>" class="btn bg-blue-500 text-white hover:bg-blue-700 py-2 px-4 rounded mb-6 inline-block">Edit Note</a>
+        </footer>
     </div>
 </main>
 
